@@ -3,16 +3,12 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import SignIn from '@/components/security/SignIn'
 import SignUp from '@/components/security/SignUp'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 Vue.use(Router)
 
 let router = new Router({
   routes: [
-    {
-      path: '*',
-      redirect: '/signIn'
-    },
     {
       path: '/',
       name: 'HelloWorld',
@@ -34,7 +30,9 @@ let router = new Router({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser
-  console.log(currentUser)
-})
+// router.beforeEach((to, from, next) => {
+//   let currentUser = firebase.auth().currentUser
+//   console.log(currentUser)
+// })
+
+export default router

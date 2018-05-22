@@ -13,11 +13,11 @@
           <v-btn flat color="orange" @click="deleteLocation(location.id)">Delete</v-btn>
         </v-card-actions>
   </v-card>
-    <form @submit="addLocation(name, image)">
-      <input v-model="name" placeholder="Location Name">
-      <input v-model="image" placeholder="Location Image URL">
-      <button type="submit">Add New Location</button>
-    </form>
+    <v-form @submit="addLocation(name, image)">
+      <v-text-field v-model="name" label="Name"></v-text-field>
+      <v-text-field v-model="image" label="Image URL"></v-text-field>
+      <v-btn type="submit">Add New Location</v-btn>
+    </v-form>
   </v-container>
 </template>
 
@@ -42,6 +42,8 @@ export default {
     addLocation (name, image) {
       const createdAt = new Date()
       firestore.collection('locations').add({ name, image, createdAt })
+      this.name = ''
+      this.image = ''
     },
     deleteLocation (id) {
       firestore.collection('locations').doc(id).delete()
