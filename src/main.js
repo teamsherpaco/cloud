@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
+
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+
 import VueFire from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -13,15 +16,18 @@ Vue.use(Vuetify)
 Vue.use(VueFire)
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyB0gooyRGUYyZMu4FkvVcd07j4FzW50BHU',
-  authDomain: 'henkel-cloud.firebaseapp.com',
-  databaseURL: 'https://henkel-cloud.firebaseio.com',
-  projectId: 'henkel-cloud',
-  storageBucket: 'henkel-cloud.appspot.com',
-  messagingSenderId: '969072103158'
+  apiKey: 'AIzaSyAqNs49-rjr7lfCqNYazeDfds-okGqZzSo',
+  authDomain: 'teamsherpaco.firebaseapp.com',
+  databaseURL: 'https://teamsherpaco.firebaseio.com',
+  projectId: 'teamsherpaco',
+  storageBucket: 'teamsherpaco.appspot.com',
+  messagingSenderId: '1061983642088'
 })
 
-export const firestore = firebase.firestore()
+var fs = firebase.firestore()
+fs.settings({ timestampsInSnapshots: true })
+
+export const firestore = fs
 
 Vue.config.productionTip = false
 
@@ -29,6 +35,9 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
+
+export const $router = router

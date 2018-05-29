@@ -18,6 +18,7 @@
         ></v-text-field>
       </v-form>
       <v-btn @click="signUp">Sign Up</v-btn>
+      <router-link :to="{ name: 'SignIn', params: {} }">Sign In</router-link>
     </v-container>
   </div>
 </template>
@@ -39,11 +40,11 @@ export default {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(
           (user) => {
-            console.log('User has been created')
+            alert('User has been created')
           },
           (err) => {
             this.error = err.message
-            console.log('error', err)
+            alert(err.message)
           }
         )
     }

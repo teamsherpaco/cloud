@@ -17,13 +17,15 @@
           required
         ></v-text-field>
       </v-form>
-      <v-btn @click="signIn">Sign In</v-btn>
+      <v-btn @click="doSignIn">Sign In</v-btn>
+      <router-link :to="{ name: 'SignUp', params: {} }">Sign Up</router-link>
     </v-container>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'SignIn',
@@ -35,15 +37,18 @@ export default {
     }
   },
   methods: {
-    signIn () {
+    ...mapActions({
+      signIn: 'signIn'
+    }),
+    doSignIn () {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(
           (user) => {
-            console.log('we are in')
+            this.signIn()
+            this.$router.push({ name: 'Dashboard' })
           },
           (err) => {
             this.error = err.message
-            console.log('error', err)
           }
         )
     }
